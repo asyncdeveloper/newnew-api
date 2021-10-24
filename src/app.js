@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 
 import errors from "./middlewares/errors";
 import routes from "./routes/index";
+import path from "path";
 
 dotenv.config();
 
@@ -15,9 +16,13 @@ class App {
         this.setUpRoutes();         
     }
 
-    setUpRoutes() {        
-        this.express.use(express.json());
-        this.express.use("/", routes);
+    setUpRoutes() {                        
+        this.express.use(express.json());            
+        
+        this.express.use("/public", express.static(path.resolve("./public")));
+        
+        this.express.use("/", routes);        
+        
         this.express.use(errors);
     }
 

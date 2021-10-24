@@ -1,8 +1,9 @@
 import { Router } from "express";
 import FileController from "../controllers/FileController";
+import { singleFileUpload } from "../utils/upload";
 
 const router = Router();
 
-router.post("/", FileController.create);
+router.post("/", singleFileUpload, FileController.create);
 
 export default router;
