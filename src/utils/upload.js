@@ -11,24 +11,33 @@ const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, __dirname);
     },
-    filename: (req, file, cb) => {                    
+    filename: (req, file, cb) => {           
+        const uniqueSuffix = Math.round(Math.random() * 1E9);              
         const ext = file.mimetype.split("/")[1];
-        cb(null, `${Date.now()}.${ext}`);
+        cb(null, `${Date.now()}-${uniqueSuffix}.${ext}`);
     },
 });
+
+export const supportedTypes = /jpeg|jpg|png|gif|mov|quicktime|mp4/;
+
+const supportedVideoTypes = /mov|quicktime|mkv|mp4/;
+
+const isVideoFile = mimetype => supportedVideoTypes.test(mimetype);
     
 export const singleFileUpload = util.promisify(multer({
     storage,
     limits: { fileSize: maxSize },
-    fileFilter: (req, file, cb) => {        
-        // Allowed ext TODO: allow more ext
-        const types = /jpeg|jpg|png|gif|mp4/;
+    fileFilter: (req, file, cb) => {                
         // Check ext
-        const ext = types.test(path.extname(file.originalname).toLowerCase());
+        const ext = supportedTypes.test(
+            path.extname(file.originalname).toLowerCase());
         // Check mime
-        const mimetype = types.test(file.mimetype);
+        const mimetype = supportedTypes.test(file.mimetype);
 
         if (mimetype && ext){
+            if (isVideoFile(file.mimetype)) {
+                req.isVideo = true;
+            }            
             return cb(null,true);
         } else {
             return cb(new BadRequest("Only image or video files supported"));

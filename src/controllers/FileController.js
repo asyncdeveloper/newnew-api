@@ -6,10 +6,12 @@ import { apiResponse } from "../utils/response";
 class FileController {
 
     async create (req, res, next) {
-        try {  
-            await generateThumbnail(req.file);
+        try {                                                  
+            const isVideo = req.isVideo || false;
 
-            const fileData = formatFileResponse(req.file);
+            await generateThumbnail(req.file, isVideo);
+        
+            const fileData = formatFileResponse(req.file, isVideo);
 
             return res.status(StatusCodes.CREATED)
                 .json(apiResponse("File uploaded successfully", fileData));
