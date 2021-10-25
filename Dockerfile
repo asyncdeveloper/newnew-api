@@ -10,6 +10,7 @@ RUN mkdir -p /opt/app
 WORKDIR /opt/app/
 
 # Copy only package.json for cache
+COPY .env.example .env
 COPY package.json ./
 
 # Add libvips
