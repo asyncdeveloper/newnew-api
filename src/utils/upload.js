@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
     },
 });
 
-export const supportedTypes = /jpeg|jpg|png|gif|mov|quicktime|mp4/;
+export const supportedTypes = /jpeg|jpg|png|heic|gif|mov|quicktime|mp4/;
 
 const supportedVideoTypes = /mov|quicktime|mkv|mp4|avi|webm/;
 
@@ -29,8 +29,8 @@ export const singleFileUpload = util.promisify(multer({
     limits: { fileSize: maxSize },
     fileFilter: (req, file, cb) => {                
         // Check ext
-        const ext = supportedTypes.test(
-            path.extname(file.originalname).toLowerCase());
+        const fileType = path.extname(file.originalname).toLowerCase(); 
+        const ext = supportedTypes.test(fileType);
         // Check mime
         const mimetype = supportedTypes.test(file.mimetype);
 
