@@ -7,7 +7,7 @@ This project was built in Node.js, Express.
 - Only one file can be uploaded at a time
 - Only Image / Video can be upload
 - Maximum File Size is 10MB
-- Files are saved to localstorage
+- Files/Thumbnails are saved to localstorage (public) folder
 - Supported file formats are (jpeg|jpg|png|heic|gif|mov|quicktime|avi|mkv|webm|mp4)
 
 ## Running the API
