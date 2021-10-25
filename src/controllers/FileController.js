@@ -1,4 +1,5 @@
 import { StatusCodes } from "http-status-codes";
+import { BadRequest } from "../utils/errors";
 import formatFileResponse from "../utils/formatFileResponse";
 import generateThumbnail from "../utils/generateThumbnail";
 import { apiResponse } from "../utils/response";
@@ -6,7 +7,10 @@ import { apiResponse } from "../utils/response";
 class FileController {
 
     async create (req, res, next) {
-        try {                                                  
+        try {        
+            if(! req.file) {
+                throw new BadRequest('No File Found');
+            }                                          
             const isVideo = req.isVideo || false;
 
             await generateThumbnail(req.file, isVideo);
