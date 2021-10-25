@@ -8,8 +8,8 @@ class FileController {
 
     async create (req, res, next) {
         try {        
-            if(! req.file) {
-                throw new BadRequest('No File Found');
+            if (! req.file) {
+                throw new BadRequest("No File Found");
             }                                          
             const isVideo = req.isVideo || false;
 
