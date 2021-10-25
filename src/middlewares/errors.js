@@ -3,8 +3,7 @@ import { MulterError } from "multer";
 import { GeneralError } from "../utils/errors";
 import { errorResponse } from "../utils/response";
 
-export default (err, req, res, next) => {    
-    console.log(err);    
+export default (err, req, res, next) => {          
     if (err instanceof GeneralError) {
         return res.status(err.getCode())
             .json(errorResponse(err.message, err.errors));        
