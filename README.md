@@ -3,6 +3,12 @@
 ## Description
 This project was built in Node.js, Express.
 
+## Project Features
+- Only one file can be uploaded at a time
+- Only Image / Video can be upload
+- Maximum File Size is 10MB
+- Files are saved to localstorage
+
 ## Running the API
 Create an `.env` file using the command. You can use the default config or change it for your purposes.
 
@@ -52,3 +58,11 @@ To run integration tests:
 ```bash
 npm test
 ```
+
+# API documentation:
+API End points and documentation can be found at:
+[Postman Documentation](https://documenter.getpostman.com/view/18065951/UV5c8uRj).
+
+List of all API endpoint:
+
+>POST /api/files
