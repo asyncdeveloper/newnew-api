@@ -8,6 +8,7 @@ This project was built in Node.js, Express.
 - Only Image / Video can be upload
 - Maximum File Size is 10MB
 - Files are saved to localstorage
+- Supported file formats are (jpeg|jpg|png|heic|gif|mov|quicktime|avi|mkv|webm|mp4)
 
 ## Running the API
 Create an `.env` file using the command. You can use the default config or change it for your purposes.

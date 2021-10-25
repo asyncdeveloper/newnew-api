@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
     },
 });
 
-export const supportedTypes = /jpeg|jpg|png|heic|gif|mov|quicktime|mp4/;
+export const supportedTypes = /jpeg|jpg|png|heic|gif|mov|quicktime|avi|mkv|webm|mp4/;
 
 const supportedVideoTypes = /mov|quicktime|mkv|mp4|avi|webm/;
 
